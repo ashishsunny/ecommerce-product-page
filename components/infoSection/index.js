@@ -7,12 +7,14 @@ import data from "../../data/data.js"
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
+import ButtonComp from "../button";
 const InfoSection = () => {
     const discount_calc = (x, y) => {
-       return x - (x*(y/100))
+       return (y - (x*100)/y)
     }
-const {navCartVal, setNavCartVal} = useContext(CartContext);
-const [cartVal, setCartVal] = useState(0)
+
+const {cartVal, setCartVal} = useContext(CartContext);
+
 
 const handleCart = (btn_value) => {
         setCartVal((e)=>{
@@ -20,23 +22,19 @@ const handleCart = (btn_value) => {
         });
     }
 
-const handleCartInfo = () =>{
-        setNavCartVal(cartVal)
-    }
-
     return ( 
     <div className={styles.info_section}>
         <div className={styles.info_section_container}>
             <h4 className={styles.heading_sub}>Sneaker Company</h4>
-            <h2 className={styles.heading_main}>Fall Limited Edition Sneakers</h2>
+            <h2 className={styles.heading_main}>{data[0].name}</h2>
             <p className={styles.para_sub}>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
             <div className={styles.info_section_group_div}>
                 <div className={styles.info_section_group_div_left}>
-                    <p className={styles.price_heading}>{`$${data[0].originalPrice}`}</p>
-                    <div className={styles.price_discount}><p className={styles.price_discount_text}>{`${data[0].discountPercentage}%`}</p></div>
+                    <p className={styles.price_heading}>{`$${data[0].discountedPrice}`}</p>
+                    <div className={styles.price_discount}><p className={styles.price_discount_text}>{`${discount_calc(data[0].discountedPrice,data[0].originalPrice)}%`}</p></div>
                 </div>
                 <div className={styles.info_section_group_div_right}>
-                    <p className={styles.orig_price}>{`$${discount_calc(data[0].originalPrice, data[0].discountPercentage)}`}</p>
+                    <p className={styles.orig_price}>{`$${data[0].originalPrice}`}</p>
                 </div>
             </div>
             <div className={styles.item_num_container}>
@@ -44,12 +42,7 @@ const handleCartInfo = () =>{
                     <p className={styles.item_num}>{cartVal}</p>
                 <Image src={icon_plus} className={styles.image_plus} onClick={() => handleCart('p')}/>
             </div>
-            <div className={styles.button_component}>
-            <div className={styles.button_component_container}>
-                <Image className={styles.button_component_svg} src={cart}/>
-                <div className={styles.button_component_text} onClick={handleCartInfo}>Add to Cart</div>
-            </div>
-            </div>
+            <ButtonComp text="Add to Cart" cart_logo={true}/>
         </div>
     </div> 
     );
