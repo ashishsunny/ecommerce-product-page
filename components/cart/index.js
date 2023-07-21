@@ -7,17 +7,19 @@ import delete_cart from '../../public/resources/images/icon-delete.svg'
 import ButtonComp from '../button';
 import data from '../../data/data';
 const Cart = () => {
-    const {cartOn, setCartOn, navCartVal, cartVal} = useContext(CartContext);
+    const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal} = useContext(CartContext);
     const TotalCalc = (amt, no) => amt * no;
-    return ( 
-        <div className={styles.cart_comp} style={{display : cartOn ? '' : 'none'}}>
-            <div className={styles.cart_child1}>
-                <div className={styles.cart_child1_text}>Cart</div>
-            </div>
+    const CartShell1 = () => {
+       return <div className={styles.cart_child2_shell1}>Your Cart is empty</div>
+    }
 
-            <div className={styles.cart_child2}>
-                {/* <div className={styles.cart_child2_text}>Your Cart is empty</div> */}
-                <div className={styles.cart_child2_shell}>
+    const handleRemove = () =>{
+        setNavCartVal(0)
+    }
+
+    const CartShell2 = () => {
+       return (
+        <div className={styles.cart_child2_shell2}>
                     <div className={styles.cart_child2_text_conatiner}>
                             <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} /></div>
                             
@@ -32,11 +34,21 @@ const Cart = () => {
                                 </div>
                             </div>
 
-                            <div className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} /></div>
+                            <div  onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} /></div>
         
                     </div>
-                    <ButtonComp text="Checkout" cart_logo={false} />
+                    <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
                 </div>
+       )
+    }
+    return ( 
+        <div className={styles.cart_comp} style={{display : cartOn ? '' : 'none'}}>
+            <div className={styles.cart_child1}>
+                <div className={styles.cart_child1_text}>Cart</div>
+            </div>
+
+            <div className={styles.cart_child2}>
+                { navCartVal === 0 ?  <CartShell1/> : <CartShell2/>}
             </div>
         </div>
      );
