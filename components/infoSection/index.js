@@ -42,7 +42,7 @@ const handleCart = (btn_value) => {
                     <p className={styles.item_num}>{cartVal}</p>
                 <Image src={icon_plus} className={styles.image_plus} onClick={() => handleCart('p')}/>
             </div>
-            <ButtonComp text="Add to Cart" cart_logo={true}/>
+            <ButtonComp text="Add to Cart" is_cart_btn={false} cart_logo={true}/>
         </div>
     </div> 
     );
