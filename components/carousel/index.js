@@ -10,15 +10,15 @@ import Cart from "../cart";
 import { useState } from "react";
 const Carousel = () => {
     const [imgVal, setImgVal] = useState(1);
-    const [imgPath, setImgPath] = useState('product1');
+    const [imgPath, setImgPath] = useState('/resources/images/image-product-1.jpg');
     const handleImage = () =>{
         setImgVal((e)=>(e + 1))
-        setImgPath(`product${imgVal}`)
+        setImgPath(`/resources/images/image-product-${imgVal}.jpg`)
     }
     return ( 
     <div className={styles.carousel}>
         <Cart/>
-        <Image className={styles.carousel_img} src={product1} />
+        <Image className={styles.carousel_img} src={imgPath} width={300} height={300} />
         <div className={styles.circle_container_left}><Image className={styles.carousel_next} src={next} /></div>
         <div onClick={handleImage} className={styles.circle_container_right }><Image className={styles.carousel_prev} src={previous} /></div>
     </div> 
