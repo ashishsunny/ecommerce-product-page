@@ -7,13 +7,16 @@ import MobileMenu from '../components/mobileMenu'
 import { MenuContext } from '../contexts/menuContext'
 import { useState } from 'react'
 import { CartContext } from '../contexts/cartContext'
+import { AppContext } from '../contexts/appContext'
 
 export default function Home() {
   const [menuOn, setMenuOn] = useState(false)
   const [navCartVal, setNavCartVal] = useState(0)
   const [cartOn, setCartOn] = useState(false)
   const [cartVal, setCartVal] = useState(0)
+  const [imgVal, setImgVal] = useState(1);
   return (
+    <AppContext.Provider value={{imgVal, setImgVal}}>
     <MenuContext.Provider value={{menuOn, setMenuOn}}>
     <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn,cartVal, setCartVal}}>
     <div className='home'>
@@ -24,5 +27,6 @@ export default function Home() {
     </div>
     </CartContext.Provider>
     </MenuContext.Provider>
+    </AppContext.Provider>
   )
 }

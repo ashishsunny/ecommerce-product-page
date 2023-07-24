@@ -67,7 +67,15 @@
     position: relative;
 }
 
-.circle_container_left,
+.circle_container_left{
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    border-radius: 50%;
+    top: 32%;
+    transform: translateY(-50%);
+}
+
 .circle_container_right{
     width: 2.5rem;
     height: 2.5rem;
@@ -75,8 +83,6 @@
     border-radius: 50%;
     top: 32%;
     transform: translateY(-50%);
-    cursor: pointer;
-    background-color: white;
 }
 
 .circle_container_left{
