@@ -21,13 +21,13 @@ const Nav = () => {
     return (
     <div className={styles.navbar}>
         <div className={styles.navbarelements_container}>
-            <Image className={styles.menu} onClick={handleClick} src={menu} />
-            <Image className={styles.logo} src={logo} />
+            <Image  className={styles.menu} onClick={handleClick} src={menu} alt="menu image logo"/>
+            <Image  className={styles.logo} src={logo} alt="app logo"/>
             <div className={styles.cart_container} onClick={handleCartClick}>
                 <div className={styles.cart_tag}>{navCartVal}</div>
-                <Image className={styles.cart} src={cart}/>
+                <Image  className={styles.cart} src={cart} alt="cart logo"/>
             </div>
-            <Image className={styles.user} src={user} />
+            <Image  className={styles.user} src={user} alt="user avatar"/>
         </div>
     </div>
     );
