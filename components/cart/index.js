@@ -21,7 +21,7 @@ const Cart = () => {
        return (
         <div className={styles.cart_child2_shell2}>
                     <div className={styles.cart_child2_text_conatiner}>
-                            <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} /></div>
+                            <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} alt='prod thumbnail' /></div>
                             
                             <div className={styles.cart_child2_text_container_child}>
                                 <div className={styles.cart_child2_text_container_child_1}>
@@ -34,7 +34,7 @@ const Cart = () => {
                                 </div>
                             </div>
 
-                            <div  onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} /></div>
+                            <div  onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
         
                     </div>
                     <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />

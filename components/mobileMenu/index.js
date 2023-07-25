@@ -12,7 +12,7 @@ const MobileMenu = () => {
     
     return ( 
         <div className={styles.mobile_menu} style={styleVal}>
-            <Image className={styles.menu_image} src={close_icon} onClick={handleClick} />
+            <Image  className={styles.menu_image} src={close_icon} onClick={handleClick} alt="menu image logo"/>
             <div className={styles.menu_items_container}>
                 <div className={styles.menu_items}>Collections</div>
                 <div className={styles.menu_items}>Men</div>
