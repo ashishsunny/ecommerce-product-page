@@ -1,14 +1,22 @@
 import styles from '../../styles/Components.module.css'
-import { useContext } from "react";
-import { CartContext } from '../../contexts/cartContext';
+import { useContext, useState, useEffect } from "react";
+import { CartContext, AppContext } from '../../contexts/cartContext';
 import Image from 'next/image';
 import prod1_thumb from '../../public/resources/images/image-product-1-thumbnail.jpg'
 import delete_cart from '../../public/resources/images/icon-delete.svg'
 import ButtonComp from '../button';
 import data from '../../data/data';
 const Cart = () => {
+    const [val, setValue] = useState(0);
     const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal} = useContext(CartContext);
+    const {imgVal, setImgVal} = useContext(CartContext);
     const TotalCalc = (amt, no) => amt * no;
+    useEffect(() => {
+    setValue(imgVal)
+    }, [imgVal])
+    
+    const { name, discountedPrice } = data[val];
+    
     const CartShell1 = () => {
        return <div className={styles.cart_child2_shell1}>Your Cart is empty</div>
     }
@@ -16,7 +24,6 @@ const Cart = () => {
     const handleRemove = () =>{
         setNavCartVal(0)
     }
-
     const CartShell2 = () => {
        return (
         <div className={styles.cart_child2_shell2}>
@@ -25,12 +32,12 @@ const Cart = () => {
                             
                             <div className={styles.cart_child2_text_container_child}>
                                 <div className={styles.cart_child2_text_container_child_1}>
-                                    <p className={styles.cart_child2_text_container_child_1_text1}>{data[0].name}</p>
+                                    <p className={styles.cart_child2_text_container_child_1_text1}>{name}</p>
                                 </div>
 
                                 <div className={styles.cart_child2_text_container_child_2}>
-                                    <p className={styles.cart_child2_text_container_child_2_text1}>{`$${data[0].discountedPrice} x ${navCartVal}`}</p>
-                                    <p className={styles.cart_child2_text_container_child_2_text2}>{`$${TotalCalc(data[0].discountedPrice, navCartVal)}`}</p>
+                                    <p className={styles.cart_child2_text_container_child_2_text1}>{`$${discountedPrice} x ${navCartVal}`}</p>
+                                    <p className={styles.cart_child2_text_container_child_2_text2}>{`$${TotalCalc(discountedPrice, navCartVal)}`}</p>
                                 </div>
                             </div>
 
