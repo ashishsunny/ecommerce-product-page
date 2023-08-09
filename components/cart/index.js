@@ -1,21 +1,19 @@
 import styles from '../../styles/Components.module.css'
 import { useContext, useState, useEffect } from "react";
-import { CartContext, AppContext } from '../../contexts/cartContext';
+import { CartContext} from '../../contexts/cartContext';
+import { AppContext} from '../../contexts/appContext';
 import Image from 'next/image';
 import prod1_thumb from '../../public/resources/images/image-product-1-thumbnail.jpg'
 import delete_cart from '../../public/resources/images/icon-delete.svg'
 import ButtonComp from '../button';
 import data from '../../data/data';
+import Loader from '../loader';
+const crypto = require('crypto');
 const Cart = () => {
-    const [val, setValue] = useState(0);
     const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal} = useContext(CartContext);
-    const {imgVal, setImgVal} = useContext(CartContext);
+    const {imgVal, setImgVal} = useContext(AppContext);
     const TotalCalc = (amt, no) => amt * no;
-    useEffect(() => {
-    setValue(imgVal)
-    }, [imgVal])
-    
-    const { name, discountedPrice } = data[val];
+    const { name, discountedPrice } = data[imgVal-1];
     
     const CartShell1 = () => {
        return <div className={styles.cart_child2_shell1}>Your Cart is empty</div>
@@ -24,7 +22,17 @@ const Cart = () => {
     const handleRemove = () =>{
         setNavCartVal(0)
     }
+
     const CartShell2 = () => {
+        const total = TotalCalc(discountedPrice, navCartVal)
+        // const item  = {
+        //     id: crypto.randomUUID(),
+        //     nam: name,
+        //     disc: discountedPrice,
+        //     tot: total
+        // }
+        // let array = [];
+
        return (
         <div className={styles.cart_child2_shell2}>
                     <div className={styles.cart_child2_text_conatiner}>
@@ -37,17 +45,16 @@ const Cart = () => {
 
                                 <div className={styles.cart_child2_text_container_child_2}>
                                     <p className={styles.cart_child2_text_container_child_2_text1}>{`$${discountedPrice} x ${navCartVal}`}</p>
-                                    <p className={styles.cart_child2_text_container_child_2_text2}>{`$${TotalCalc(discountedPrice, navCartVal)}`}</p>
+                                    <p className={styles.cart_child2_text_container_child_2_text2}>{`$${total}`}</p>
                                 </div>
                             </div>
-
+                            <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
                             <div  onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
-        
                     </div>
-                    <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
                 </div>
        )
     }
+
     return ( 
         <div className={styles.cart_comp} style={{display : cartOn ? '' : 'none'}}>
             <div className={styles.cart_child1}>
@@ -57,6 +64,7 @@ const Cart = () => {
             <div className={styles.cart_child2}>
                 { navCartVal === 0 ?  <CartShell1/> : <CartShell2/>}
             </div>
+            
         </div>
      );
 }

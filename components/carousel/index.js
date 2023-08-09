@@ -29,7 +29,6 @@ const Carousel = () => {
         setImgVal(e => (value === 'l' ? (e === 0 ? 0 : e - 1) : ( e === 5 ? 4 : e + 1)))
     }
     useEffect(() => {
-        console.log(imgVal)
       }, [handleImage])
     
     

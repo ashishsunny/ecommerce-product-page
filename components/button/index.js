@@ -21,7 +21,7 @@ const ButtonComp = ({text, cart_logo, is_cart_btn}) => {
       }, [cartVal, is_cart_btn]);
 
     return ( 
-        <div className={styles.button_component} style={btn_style} onClick={handleCartInfo}>
+        <div className={styles.button_component} style={btn_style} onClick={is_cart_btn ? null : handleCartInfo}>
                 <div className={styles.button_component_container}>
                     <Image className={styles.button_component_svg} style={{display : cart_logo ? '' : 'none'}} src={cart} alt="button component svg"/>
                     <div className={styles.button_component_text}>{text}</div>
