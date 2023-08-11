@@ -8,10 +8,9 @@ import delete_cart from '../../public/resources/images/icon-delete.svg'
 import ButtonComp from '../button';
 import data from '../../data/data';
 import Loader from '../loader';
-const crypto = require('crypto');
 const Cart = () => {
     const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal} = useContext(CartContext);
-    const {imgVal, setImgVal} = useContext(AppContext);
+    const {imgVal, setImgVal, currentI, cartList, setCurrentI, handleItems} = useContext(AppContext);
     const TotalCalc = (amt, no) => amt * no;
     const { name, discountedPrice } = data[imgVal-1];
     
@@ -23,15 +22,20 @@ const Cart = () => {
         setNavCartVal(0)
     }
 
+    const total = TotalCalc(discountedPrice, navCartVal)
+        const item  = {
+            id: crypto.randomUUID(),
+            nam: name,
+            disc: discountedPrice,
+            tot: total
+        }
+
+
+        useEffect(() => {
+            setCurrentI(item)
+        }, [navCartVal])
+
     const CartShell2 = () => {
-        const total = TotalCalc(discountedPrice, navCartVal)
-        // const item  = {
-        //     id: crypto.randomUUID(),
-        //     nam: name,
-        //     disc: discountedPrice,
-        //     tot: total
-        // }
-        // let array = [];
 
        return (
         <div className={styles.cart_child2_shell2}>
@@ -48,9 +52,10 @@ const Cart = () => {
                                     <p className={styles.cart_child2_text_container_child_2_text2}>{`$${total}`}</p>
                                 </div>
                             </div>
-                            <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
-                            <div  onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
+                            
+                            <div onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
                     </div>
+                    <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
                 </div>
        )
     }
