@@ -5,7 +5,7 @@ const Loader = () => {
     const override =`
     display: block;
     margin: 0 auto;
-  `;
+     `;
 
 return ( 
         <div className="loader">

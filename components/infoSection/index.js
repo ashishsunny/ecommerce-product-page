@@ -4,7 +4,7 @@ import icon_minus from "../../public/resources/images/icon-minus.svg"
 import icon_plus from "../../public/resources/images/icon-plus.svg"
 import cart from "../../public/resources/images/cart.svg"
 import data from "../../data/data.js"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 import { AppContext } from "../../contexts/appContext";
@@ -14,15 +14,26 @@ const InfoSection = () => {
        return Math.round((y - x)/y*100)
     }
 
-const {cartVal, setCartVal} = useContext(CartContext);
-const {imgVal} = useContext(AppContext);
+const {cartVal, setCartVal, navCartValue} = useContext(CartContext);
+const {imgVal, currentI, setCartList, cartList} = useContext(AppContext);
+const [item, setItem] = useState();
 
+useEffect(() => {
+  setItem(currentI)
+}, [currentI])
 
 const handleCart = (btn_value) => {
         setCartVal((e)=>{
-            return btn_value === 'm' ? (e === 0 ? 0 : e - 1) : e + 1;
+        return btn_value === 'm' ? (e === 0 ? 0 : e - 1) : e + 1;
         });
     }
+
+    
+    const handleItems = () => {
+        setCartList((e)=> [...e, item])
+      }
+ 
+      console.log(cartList)
 
     return ( 
     <div className={styles.info_section}>
@@ -44,7 +55,7 @@ const handleCart = (btn_value) => {
                     <p className={styles.item_num}>{cartVal}</p>
                 <Image src={icon_plus} className={styles.image_plus} onClick={() => handleCart('p')} alt="logo image plus"/>
             </div>
-            <ButtonComp text="Add to Cart" is_cart_btn={false} cart_logo={true}/>
+            <ButtonComp text="Add to Cart" is_cart_btn={false} cart_logo={true} onClick={handleItems}/>
         </div>
     </div> 
     );
