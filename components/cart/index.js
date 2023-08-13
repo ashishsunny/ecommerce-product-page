@@ -27,7 +27,8 @@ const Cart = () => {
             id: crypto.randomUUID(),
             nam: name,
             disc: discountedPrice,
-            tot: total
+            tot: total,
+            val: navCartVal
         }
 
 
@@ -39,22 +40,30 @@ const Cart = () => {
 
        return (
         <div className={styles.cart_child2_shell2}>
-                    <div className={styles.cart_child2_text_conatiner}>
+                        {
+                            cartList.map((x)=>{
+                                return(
+                                    <div className={styles.cart_child2_text_conatiner}>
                             <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} alt='prod thumbnail' /></div>
                             
                             <div className={styles.cart_child2_text_container_child}>
                                 <div className={styles.cart_child2_text_container_child_1}>
-                                    <p className={styles.cart_child2_text_container_child_1_text1}>{name}</p>
+                                    <p className={styles.cart_child2_text_container_child_1_text1}>{x.nam}</p>
                                 </div>
 
                                 <div className={styles.cart_child2_text_container_child_2}>
-                                    <p className={styles.cart_child2_text_container_child_2_text1}>{`$${discountedPrice} x ${navCartVal}`}</p>
-                                    <p className={styles.cart_child2_text_container_child_2_text2}>{`$${total}`}</p>
+                                    <p className={styles.cart_child2_text_container_child_2_text1}>{`$${x.disc} x ${x.val}`}</p>
+                                    <p className={styles.cart_child2_text_container_child_2_text2}>{`$${x.tot}`}</p>
                                 </div>
                             </div>
                             
                             <div onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
                     </div>
+                                )
+                            })
+                        }
+
+                    
                     <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
                 </div>
        )
