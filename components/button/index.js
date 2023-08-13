@@ -4,11 +4,12 @@ import Image from "next/image"
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
-const ButtonComp = ({text, cart_logo, is_cart_btn}) => {
+const ButtonComp = ({text, cart_logo, is_cart_btn, click}) => {
     const {setNavCartVal, cartVal} = useContext(CartContext);
 
     const handleCartInfo = () =>{
         setNavCartVal(cartVal)
+        click()
     }
 
     const [btn_style, setBtn_style] = useState({});

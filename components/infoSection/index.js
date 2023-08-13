@@ -15,12 +15,9 @@ const InfoSection = () => {
     }
 
 const {cartVal, setCartVal, navCartValue} = useContext(CartContext);
-const {imgVal, currentI, setCartList, cartList} = useContext(AppContext);
-const [item, setItem] = useState();
+const {imgVal, currentI, setCurrentI, setCartList, cartList} = useContext(AppContext);
 
-useEffect(() => {
-  setItem(currentI)
-}, [currentI])
+
 
 const handleCart = (btn_value) => {
         setCartVal((e)=>{
@@ -28,13 +25,10 @@ const handleCart = (btn_value) => {
         });
     }
 
-    
-    const handleItems = () => {
-        setCartList((e)=> [...e, item])
+    const handleItems = () =>{
+        setCartList([...cartList, currentI])
       }
- 
       console.log(cartList)
-
     return ( 
     <div className={styles.info_section}>
         <div className={styles.info_section_container}>
@@ -55,7 +49,7 @@ const handleCart = (btn_value) => {
                     <p className={styles.item_num}>{cartVal}</p>
                 <Image src={icon_plus} className={styles.image_plus} onClick={() => handleCart('p')} alt="logo image plus"/>
             </div>
-            <ButtonComp text="Add to Cart" is_cart_btn={false} cart_logo={true} onClick={handleItems}/>
+            <ButtonComp text="Add to Cart" is_cart_btn={false} cart_logo={true} click={handleItems}/>
         </div>
     </div> 
     );
