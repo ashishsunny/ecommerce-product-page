@@ -16,11 +16,12 @@ export default function Home() {
   const [cartVal, setCartVal] = useState(0)
   const [imgVal, setImgVal] = useState(1);
   const [cartList, setCartList] = useState([])
-  const [currentI, setCurrentI] = useState("");
+  const [currentI, setCurrentI] = useState("")
+  const [clickCount, setClickCount] = useState(0)
   return (
     <AppContext.Provider value={{imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI}}>
     <MenuContext.Provider value={{menuOn, setMenuOn}}>
-    <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn,cartVal, setCartVal}}>
+    <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn,cartVal, setCartVal,  clickCount, setClickCount}}>
     <div className='home'>
       <Nav/>
       <Carousel/>
