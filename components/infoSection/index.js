@@ -14,7 +14,7 @@ const InfoSection = () => {
        return Math.round((y - x)/y*100)
     }
 
-const {cartVal, setCartVal, navCartValue} = useContext(CartContext);
+const {cartVal, setCartVal, navCartValue, clickCount} = useContext(CartContext);
 const {imgVal, currentI, setCurrentI, setCartList, cartList} = useContext(AppContext);
 
 
@@ -28,6 +28,7 @@ const handleCart = (btn_value) => {
     const handleItems = () =>{
         setCartList([...cartList, currentI])
       }
+
       console.log(cartList)
     return ( 
     <div className={styles.info_section}>

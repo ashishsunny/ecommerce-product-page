@@ -9,8 +9,8 @@ import ButtonComp from '../button';
 import data from '../../data/data';
 import Loader from '../loader';
 const Cart = () => {
-    const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal} = useContext(CartContext);
-    const {imgVal, setImgVal, currentI, cartList, setCurrentI, handleItems} = useContext(AppContext);
+    const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal, clickCount} = useContext(CartContext);
+    const {imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI, handleItems} = useContext(AppContext);
     const TotalCalc = (amt, no) => amt * no;
     const { name, discountedPrice } = data[imgVal-1];
     
@@ -18,23 +18,28 @@ const Cart = () => {
        return <div className={styles.cart_child2_shell1}>Your Cart is empty</div>
     }
 
-    const handleRemove = () =>{
-        setNavCartVal(0)
+    const handleDelete = (id) =>{
+        const updatedCart = cartList.filter((x)=>{
+            return id === x.id ? false : true
+        })
+        setCartList(updatedCart)
     }
 
-    const total = TotalCalc(discountedPrice, navCartVal)
-        const item  = {
+
+    const total = TotalCalc(discountedPrice, cartVal)
+    console.log(name)
+    const item  = {
             id: crypto.randomUUID(),
-            nam: name,
+            name: name,
             disc: discountedPrice,
             tot: total,
-            val: navCartVal
+            val: cartVal
         }
-
 
         useEffect(() => {
             setCurrentI(item)
-        }, [navCartVal])
+        }, [cartVal, navCartVal, imgVal, clickCount])
+        console.log(cartVal)
 
     const CartShell2 = () => {
 
@@ -43,12 +48,11 @@ const Cart = () => {
                         {
                             cartList.map((x)=>{
                                 return(
-                                    <div className={styles.cart_child2_text_conatiner}>
-                            <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} alt='prod thumbnail' /></div>
-                            
+                            <div className={styles.cart_child2_text_conatiner}>
+                            <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} alt='prod thumbnail' /></div>               
                             <div className={styles.cart_child2_text_container_child}>
                                 <div className={styles.cart_child2_text_container_child_1}>
-                                    <p className={styles.cart_child2_text_container_child_1_text1}>{x.nam}</p>
+                                    <p className={styles.cart_child2_text_container_child_1_text1}>{x.name}</p>
                                 </div>
 
                                 <div className={styles.cart_child2_text_container_child_2}>
@@ -57,14 +61,14 @@ const Cart = () => {
                                 </div>
                             </div>
                             
-                            <div onClick={handleRemove}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
+                            <div onClick={()=>handleDelete(x.id)}  className={styles.cart_del_img_container}><Image src={delete_cart} className={styles.cart_del_img} alt='delete img' /></div>
                     </div>
                                 )
                             })
                         }
 
                     
-                    <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />
+                    { cartList.length === 0 ? null : <ButtonComp text="Checkout" is_cart_btn={true} cart_logo={false} />  }    
                 </div>
        )
     }
@@ -76,7 +80,7 @@ const Cart = () => {
             </div>
 
             <div className={styles.cart_child2}>
-                { navCartVal === 0 ?  <CartShell1/> : <CartShell2/>}
+                { navCartVal  === 0 ?  <CartShell1/> : <CartShell2/>}
             </div>
             
         </div>

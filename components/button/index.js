@@ -5,12 +5,17 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 const ButtonComp = ({text, cart_logo, is_cart_btn, click}) => {
-    const {setNavCartVal, cartVal} = useContext(CartContext);
+    const {setNavCartVal, cartVal, setClickCount} = useContext(CartContext);
 
     const handleCartInfo = () =>{
         setNavCartVal(cartVal)
         click()
+        handleButtonClick() 
     }
+
+    const handleButtonClick = () => {
+        setClickCount(prevCount => prevCount + 1);
+      };
 
     const [btn_style, setBtn_style] = useState({});
     useEffect(() => {
