@@ -13,6 +13,8 @@ const Cart = () => {
     const {imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI, handleItems} = useContext(AppContext);
     const TotalCalc = (amt, no) => amt * no;
     const { name, discountedPrice } = data[imgVal-1];
+
+
     
     const CartShell1 = () => {
        return <div className={styles.cart_child2_shell1}>Your Cart is empty</div>
@@ -23,11 +25,10 @@ const Cart = () => {
             return id === x.id ? false : true
         })
         setCartList(updatedCart)
+        sessionStorage.setItem('myData', JSON.stringify(updatedCart));
     }
 
-
     const total = TotalCalc(discountedPrice, cartVal)
-    console.log(name)
     const item  = {
             id: crypto.randomUUID(),
             name: name,
@@ -39,14 +40,17 @@ const Cart = () => {
         useEffect(() => {
             setCurrentI(item)
         }, [cartVal, navCartVal, imgVal, clickCount])
-        console.log(cartVal)
 
     const CartShell2 = () => {
-
+        const storedCartList = sessionStorage.getItem('myData');
+        const [dataArray, setDataArray] = useState([]);
+        useEffect(() => {
+            setDataArray(storedCartList);
+          }, []);
        return (
         <div className={styles.cart_child2_shell2}>
                         {
-                            cartList.map((x)=>{
+                            dataArray.map((x)=>{
                                 return(
                             <div className={styles.cart_child2_text_conatiner}>
                             <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} alt='prod thumbnail' /></div>               

@@ -26,8 +26,12 @@ const handleCart = (btn_value) => {
     }
 
     const handleItems = () =>{
-        setCartList([...cartList, currentI])
+        const newVal = [...cartList, currentI]
+        setCartList(newVal)
+        sessionStorage.setItem('myData', JSON.stringify(newVal));
       }
+
+     
 
       console.log(cartList)
     return ( 
