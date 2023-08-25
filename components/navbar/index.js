@@ -13,7 +13,7 @@ const Nav = () => {
 
     const { menuOn, setMenuOn } = useContext(MenuContext);
     const { cartList } = useContext(AppContext);
-    const {navCartVal, setNavCartVal} = useContext(CartContext);
+    const {navCartVal, setNavCartVal,itemsno, setItemsno} = useContext(CartContext);
     const {cartOn, setCartOn} = useContext(CartContext);
     const handleCartClick = () => setCartOn((e)=>(!e));
     const handleClick = () => {
@@ -24,6 +24,7 @@ const Nav = () => {
     cartList.map((i)=>{
         items_no += i.val
     })
+    setItemsno(items_no)
 
     return (
     <div className={styles.navbar}>

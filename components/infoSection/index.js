@@ -31,9 +31,6 @@ const handleCart = (btn_value) => {
         sessionStorage.setItem('myData', JSON.stringify(newVal));
       }
 
-     
-
-      console.log(cartList)
     return ( 
     <div className={styles.info_section}>
         <div className={styles.info_section_container}>

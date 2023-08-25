@@ -18,6 +18,7 @@ export default function Home() {
   const [cartList, setCartList] = useState([]) 
   const [currentI, setCurrentI] = useState("")
   const [clickCount, setClickCount] = useState(0)
+  const [itemsno, setItemsno] = useState(0)
 
   useEffect(() => {
     const storedCartList = sessionStorage.getItem('myData');
@@ -29,7 +30,7 @@ export default function Home() {
   return (
     <AppContext.Provider value={{imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI}}>
     <MenuContext.Provider value={{menuOn, setMenuOn}}>
-    <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn,cartVal, setCartVal,  clickCount, setClickCount}}>
+    <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn,cartVal, setCartVal,  clickCount, setClickCount, itemsno, setItemsno}}>
     <div className='home'>
       <Nav/>
       <Carousel/>

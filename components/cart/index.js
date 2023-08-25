@@ -9,7 +9,7 @@ import ButtonComp from '../button';
 import data from '../../data/data';
 import Loader from '../loader';
 const Cart = () => {
-    const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal, clickCount} = useContext(CartContext);
+    const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal, clickCount, itemsno, setItemsno} = useContext(CartContext);
     const {imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI, handleItems} = useContext(AppContext);
     const TotalCalc = (amt, no) => amt * no;
     const { name, discountedPrice } = data[imgVal-1];
@@ -41,11 +41,10 @@ const Cart = () => {
             setCurrentI(item)
         }, [cartVal, navCartVal, imgVal, clickCount])
 
-    const CartShell2 = () => {
-        const storedCartList = sessionStorage.getItem('myData');
+    const CartShell2 = () => { 
         const [dataArray, setDataArray] = useState([]);
         useEffect(() => {
-            setDataArray(storedCartList);
+            setDataArray(cartList);
           }, []);
        return (
         <div className={styles.cart_child2_shell2}>
@@ -84,7 +83,7 @@ const Cart = () => {
             </div>
 
             <div className={styles.cart_child2}>
-                { navCartVal  === 0 ?  <CartShell1/> : <CartShell2/>}
+                { itemsno  === 0 ?  <CartShell1/> : <CartShell2/>}
             </div>
             
         </div>
