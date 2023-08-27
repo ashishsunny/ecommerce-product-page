@@ -1,3 +1,4 @@
+/* mobile styles*/
 .navbar{
     background-color: #fff;
     width: 100%;
@@ -375,3 +376,38 @@
     width: 0.875rem;
     height: 1rem;
 }
+
+/* desktop styles */
+
+@media (min-width: 1024px) {
+    .navbar{
+        background-color: #fff;
+        width: 100%;
+    }
+    .menuitemscont{
+        display:flex;
+    }
+
+    .subcont_1{
+        display: flex;
+    }
+    
+    .subcont_2{
+        display: flex;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }

@@ -82,3 +82,9 @@ select {
 .caro{
   width: 110%;
 }
+
+@media (min-width: 1024px) {
+  .home {
+  padding: 1.75rem 10.3125rem 8.25rem 10.3125rem;
+  }
+}
