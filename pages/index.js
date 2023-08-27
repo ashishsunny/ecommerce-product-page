@@ -30,9 +30,9 @@ export default function Home() {
   return (
     <AppContext.Provider value={{imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI}}>
     <MenuContext.Provider value={{menuOn, setMenuOn}}>
-    <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn,cartVal, setCartVal,  clickCount, setClickCount, itemsno, setItemsno}}>
+    <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn, cartVal, setCartVal, clickCount, setClickCount, itemsno, setItemsno}}>
     <div className='home'>
-      <Nav/>
+      <Nav isMobile={false}/>
       <Carousel/>
       <InfoSection/>
       <MobileMenu/>
