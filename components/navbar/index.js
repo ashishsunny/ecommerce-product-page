@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from '../../styles/Components.module.css'
+import styles2 from '../../styles/Desktop.module.css'
 import menu from '../../public/resources/images/icon-menu.svg'
 import logo from '../../public/resources/images/logo.svg'
 import cart from '../../public/resources/images/icon-cart.svg'
@@ -44,24 +45,29 @@ const Nav = ({ isMobile }) => {
           <Image className={styles.user} src={user} alt="user avatar" />
         </div>
       ) : (
-        <div className={styles.navbarelements_container}>
-        <div className={styles.subcont_1}>
-          <Image className={styles.logo} src={logo} alt="app logo" />
-          <ul className={styles.menuitemscont}>
-            <li className={styles.menu_item}>Collections</li>
-            <li className={styles.menu_item}>Men</li>
-            <li className={styles.menu_item}>Women</li>
-            <li className={styles.menu_item}>About</li>
-            <li className={styles.menu_item}>Contact</li>
+        <div className={styles2.mobilenavcont}>
+        <div className={styles2.navbarelements_container}>
+        <div className={styles2.subcont_1}>
+            <div className={styles2.logo_cont}>
+            <Image className={styles2.logo} src={logo} alt="app logo" />
+            </div>
+          <ul className={styles2.menuitemscont}>
+            <li className={styles2.menu_item}>Collections</li>
+            <li className={styles2.menu_item}>Men</li>
+            <li className={styles2.menu_item}>Women</li>
+            <li className={styles2.menu_item}>About</li>
+            <li className={styles2.menu_item}>Contact</li>
           </ul>
         </div>
-        <div className={styles.subcont_2}>
-          <div className={styles.cart_container} onClick={handleCartClick}>
-            <div className={styles.cart_tag}>{items_no}</div>
-            <Image className={styles.cart} src={cart} alt="cart logo" />
+        <div className={styles2.subcont_2}>
+          <div className={styles2.cart_container} onClick={handleCartClick}>
+            <div className={styles2.cart_tag}>{items_no}</div>
+            <Image className={styles2.cart} src={cart} alt="cart logo" />
           </div>
-          <Image className={styles.user} src={user} alt="user avatar" />
+          <Image className={styles2.user} src={user} alt="user avatar" />
           </div>
+        </div>
+        <div className={styles2.nav_line}></div>
         </div>
       )}
     </div>

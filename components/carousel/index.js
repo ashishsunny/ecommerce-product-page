@@ -35,7 +35,7 @@ const Carousel = () => {
     return ( 
     <div className={styles.carousel}>
         <Cart/>
-        <Image className={styles.carousel_img} src={`/resources/images/image-product-${imgVal}.jpg`} alt="product image" width={300} height={300} />
+        <Image className={styles.carousel_img} src={`/resources/images/image-product-${imgVal}.png`} alt="product image" width={300} height={300} />
         <div style={style_l} onClick={(()=>handleImage("l"))} className={styles.circle_container_left}><Image className={styles.carousel_next} src={next} alt="next btn" /></div>
         <div style={style_r} onClick={(()=>handleImage("r"))} className={styles.circle_container_right }><Image className={styles.carousel_prev} src={previous} alt="prev btn"/></div>
     </div>
