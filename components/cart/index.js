@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { CartContext} from '../../contexts/cartContext';
 import { AppContext} from '../../contexts/appContext';
 import Image from 'next/image';
-import prod1_thumb from '../../public/resources/images/image-product-1-thumbnail.jpg'
+import prod1_thumb from '../../public/resources/images/image-product-2-thumbnail.png'
 import delete_cart from '../../public/resources/images/icon-delete.svg'
 import ButtonComp from '../button';
 import data from '../../data/data';

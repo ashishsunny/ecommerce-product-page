@@ -19,6 +19,7 @@ export default function Home() {
   const [currentI, setCurrentI] = useState("")
   const [clickCount, setClickCount] = useState(0)
   const [itemsno, setItemsno] = useState(0)
+  const [viewportWidth, setViewportWidth] = useState(0);
 
   useEffect(() => {
     const storedCartList = sessionStorage.getItem('myData');
@@ -27,12 +28,31 @@ export default function Home() {
     }
   }, []);
 
+  const handleResize = () => {
+    setViewportWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setViewportWidth(window.innerWidth);
+      const handleResize = () => {
+        setViewportWidth(window.innerWidth);
+      };
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+
+  const isMobVal = viewportWidth > 1024 ? false : true;
+
   return (
     <AppContext.Provider value={{imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI}}>
     <MenuContext.Provider value={{menuOn, setMenuOn}}>
     <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn, cartVal, setCartVal, clickCount, setClickCount, itemsno, setItemsno}}>
     <div className='home'>
-      <Nav isMobile={false}/>
+      <Nav isMobile={isMobVal}/>
       <Carousel/>
       <InfoSection/>
       <MobileMenu/>
