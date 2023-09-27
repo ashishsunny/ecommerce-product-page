@@ -61,6 +61,7 @@
     display: flex;
     justify-content: center;
   }
+
 .carousel_img{
     display: block;
     width: 100%;
@@ -376,4 +377,30 @@
 .cart_del_img{
     width: 0.875rem;
     height: 1rem;
+}
+.carousel_sub2{
+    display: flex;
+}
+
+@media (min-width: 1024px) {
+    .carousel {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .carousel_sub2_dtp{
+        display: flex;
+      }
+      .carousel_thumb_img{
+        width: 80px;
+        height: 80px;
+        margin-right: 34px;
+      }
+      .main{
+        display: none;
+        flex-direction: column;
+      }
 }
