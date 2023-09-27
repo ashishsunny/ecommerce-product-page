@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Nav from '../components/navbar'
-import Carousel from '../components/carousel'
-import InfoSection from '../components/infoSection'
 import MobileMenu from '../components/mobileMenu'
 import { MenuContext } from '../contexts/menuContext'
 import { useState, useEffect } from 'react'
 import { CartContext } from '../contexts/cartContext'
 import { AppContext } from '../contexts/appContext'
+import Main from '../sections/main'
 
 export default function Home() {
   const [menuOn, setMenuOn] = useState(false)
@@ -48,14 +47,13 @@ export default function Home() {
   const isMobVal = viewportWidth > 1024 ? false : true;
 
   return (
-    <AppContext.Provider value={{imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI}}>
+    <AppContext.Provider value={{imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI, isMobVal}}>
     <MenuContext.Provider value={{menuOn, setMenuOn}}>
     <CartContext.Provider value={{navCartVal, setNavCartVal, cartOn, setCartOn, cartVal, setCartVal, clickCount, setClickCount, itemsno, setItemsno}}>
     <div className='home'>
       <Nav isMobile={isMobVal}/>
-      <Carousel/>
-      <InfoSection/>
       <MobileMenu/>
+      <Main/>
     </div>
     </CartContext.Provider>
     </MenuContext.Provider>
