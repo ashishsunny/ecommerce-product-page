@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
-const ButtonComp = ({text, cart_logo, is_cart_btn, click}) => {
+const ButtonComp = ({text, cart_logo, is_cart_btn, click, stylesAdd, isMobile}) => {
     const {setNavCartVal, cartVal, setClickCount} = useContext(CartContext);
 
     const handleCartInfo = () =>{
@@ -18,11 +18,14 @@ const ButtonComp = ({text, cart_logo, is_cart_btn, click}) => {
       };
 
     const [btn_style, setBtn_style] = useState({});
+    console.log(stylesAdd)
     useEffect(() => {
         setBtn_style({
             background: is_cart_btn ? ' #FF7E1B' : (cartVal === 0 ?  "#f39147" : ' #FF7E1B'),
             cursor: cartVal === 0 ? '' : 'pointer',
-            pointerEvents: cartVal === 0 ? 'none' : ''
+            pointerEvents: cartVal === 0 ? 'none' : '',
+            marginTop: !isMobile && is_cart_btn ? '' : '1.5rem',
+            marginLeft: !isMobile && is_cart_btn ? '' : '1rem'
         });
       }, [cartVal, is_cart_btn]);
 

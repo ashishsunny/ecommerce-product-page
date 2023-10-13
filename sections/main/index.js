@@ -6,9 +6,9 @@ import InfoSection from '../../components/infoSection'
 const Main = () => {
     const {isMobVal} = useContext(AppContext);
     return ( 
-        <div styles={style.main}>
+        <div styles={style.main} style={{display: 'flex', flexDirection: isMobVal ? 'column': 'row'}}>
             <Carousel isMobile={isMobVal}/>
-            <InfoSection/>
+            <InfoSection isMobile={isMobVal}/>
         </div>
      );
 }
