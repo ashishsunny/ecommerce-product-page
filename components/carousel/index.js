@@ -6,6 +6,7 @@ import Cart from '../cart'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/appContext'
 import { useState, useEffect } from 'react'
+import data from '../../data/data'
 
 const Carousel = ({ isMobile }) => {
   const { imgVal, setImgVal } = useContext(AppContext)
@@ -32,7 +33,6 @@ const Carousel = ({ isMobile }) => {
     )
   }
   useEffect(() => {}, [handleImage])
-
   return (
     <div className={styles.carousel}>
       {isMobile ? (
@@ -68,23 +68,31 @@ const Carousel = ({ isMobile }) => {
         <>
           <Cart />
           <Image
-            className={styles.carousel_img}
+            className={styles.carousel_img_dt}
             src={`${imageBasePath}image-product-${imgVal}.png`}
             alt="product image"
             width={300}
             height={300}
           />
 
-          <div className={styles.carousel_sub2_dtp}>
-            {Array.from({ length: 4 }, (_, k) => (
+          <div className={styles.carousel_sub2_dt} style={{padding: "1.5rem"}}>
+            {data.map(({sneakerId}) => {
+              while(sneakerId<5){
+              return(
+              <div style={{position:"relative"}} onClick={()=>setImgVal(sneakerId)}>
+              <div className={imgVal !== (sneakerId) ? styles.overlay_cont_dt : null} style={{ background: "rgba(255, 255, 255, 0.577)"}}></div>
               <Image
               className={styles.carousel_thumb_img}
-              src={`/resources/images/image-product-${k+1}-thumbnail.png`}
+              src={`/resources/images/image-product-${sneakerId}-thumbnail.png`}
               alt="product image"
               width={80}
               height={80}
-            />
-            ))}
+              style={{borderRadius: "10px" , border: imgVal === (sneakerId) ? "2px solid #FF7E1B" : null}}
+            /> 
+            </div>
+              )
+              }
+})}
           </div>
         </>
       )}
