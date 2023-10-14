@@ -37,7 +37,7 @@ const Carousel = ({ isMobile }) => {
     <div className={styles.carousel}>
       {isMobile ? (
         <>
-          <Cart />
+          <Cart isMobile={isMobile}/>
           <Image
             className={styles.carousel_img}
             src={`${imageBasePath}image-product-${imgVal}.png`}
@@ -66,7 +66,6 @@ const Carousel = ({ isMobile }) => {
         </>
       ) : (
         <>
-          <Cart />
           <Image
             className={styles.carousel_img_dt}
             src={`${imageBasePath}image-product-${imgVal}.png`}
