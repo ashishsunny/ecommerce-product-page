@@ -3,12 +3,11 @@ import { useContext, useState, useEffect } from "react";
 import { CartContext} from '../../contexts/cartContext';
 import { AppContext} from '../../contexts/appContext';
 import Image from 'next/image';
-import prod1_thumb from '../../public/resources/images/image-product-2-thumbnail.png'
 import delete_cart from '../../public/resources/images/icon-delete.svg'
 import ButtonComp from '../button';
 import data from '../../data/data';
 import Loader from '../loader';
-const Cart = () => {
+const Cart = ({isMobile}) => {
     const {cartOn, setCartOn, navCartVal, cartVal, setNavCartVal, clickCount, itemsno, setItemsno} = useContext(CartContext);
     const {imgVal, setImgVal, currentI, cartList, setCartList, setCurrentI, handleItems} = useContext(AppContext);
     const TotalCalc = (amt, no) => amt * no;
@@ -34,7 +33,8 @@ const Cart = () => {
             name: name,
             disc: discountedPrice,
             tot: total,
-            val: cartVal
+            val: cartVal,
+            img: imgVal
         }
 
         useEffect(() => {
@@ -50,9 +50,9 @@ const Cart = () => {
         <div className={styles.cart_child2_shell2}>
                         {
                             dataArray.map((x)=>{
-                                return(
+                            return(
                             <div className={styles.cart_child2_text_conatiner}>
-                            <div className={styles.cart_thumb_img_container}><Image src={prod1_thumb} className={styles.cart_thumb_img} alt='prod thumbnail' /></div>               
+                            <div className={styles.cart_thumb_img_container}><Image width={100} height={100} className={styles.cart_thumb_img} src={`/resources/images/image-product-${x.img}-thumbnail.png`} /></div>               
                             <div className={styles.cart_child2_text_container_child}>
                                 <div className={styles.cart_child2_text_container_child_1}>
                                     <p className={styles.cart_child2_text_container_child_1_text1}>{x.name}</p>
@@ -77,7 +77,7 @@ const Cart = () => {
     }
 
     return ( 
-        <div className={styles.cart_comp} style={{display : cartOn ? '' : 'none'}}>
+        <div className={isMobile ? styles.cart_comp : styles.cart_comp_dt} style={{display : cartOn ? '' : 'none'}}>
             <div className={styles.cart_child1}>
                 <div className={styles.cart_child1_text}>Cart</div>
             </div>

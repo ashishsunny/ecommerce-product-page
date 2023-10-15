@@ -9,6 +9,8 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 import { AppContext } from "../../contexts/appContext";
 import ButtonComp from "../button";
+import Cart from "../cart";
+
 const InfoSection = ({isMobile}) => {
     const discount_calc = (x, y) => {
         return Math.round((y - x) / y * 100)
@@ -32,6 +34,7 @@ const InfoSection = ({isMobile}) => {
     }
     return (
             <div className={styles.info_section}>
+                {!isMobile ? <Cart isMobile={isMobile}/> : null}
                 <div className={styles.info_section_container}>
                     <h4 className={styles.heading_sub}>{data[imgVal - 1].brand}</h4>
                     <h2 className={styles.heading_main}>{data[imgVal - 1].name}</h2>
